@@ -297,6 +297,11 @@ OIDC::TrustedPublisher::GitHubAction.find_or_create_by!(
   environment: "deploy"
 ).rubygem_trusted_publishers.find_or_create_by!(rubygem: rubygem0)
 
+rubygem0.versions.find_by(full_name: "rubygem0-1.0.0").attestations.find_or_create_by!(
+  media_type: Sigstore::BundleType::BUNDLE_0_3.media_type,
+  body: { media_type: Sigstore::BundleType::BUNDLE_0_3.media_type }
+)
+
 author.oidc_pending_trusted_publishers.create_with(
   expires_at: 100.years.from_now
 ).find_or_create_by!(
