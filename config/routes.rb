@@ -158,6 +158,7 @@ Rails.application.routes.draw do
     end
     resource :dashboard, only: :show, constraints: { format: /html|atom/ }
     resources :subscriptions, only: :index
+    resources :organizations, only: %i[index show]
     resources :profiles, only: :show
     get "profile/me", to: "profiles#me", as: :my_profile
     resource :multifactor_auth, only: %i[update] do
