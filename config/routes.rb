@@ -274,6 +274,9 @@ Rails.application.routes.draw do
 
       get "users", to: "users#edit"
       patch "users", to: "users#update"
+
+      get "confirm", to: "confirm#show"
+      patch "confirm", to: "confirm#update"
     end
   end
 
