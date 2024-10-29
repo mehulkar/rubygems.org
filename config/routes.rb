@@ -267,18 +267,20 @@ Rails.application.routes.draw do
 
     get '/sign_up' => 'users#new', as: 'sign_up' if Clearance.configuration.allow_sign_up?
 
-    namespace :onboarding do
-      get "name", to: "name#new"
-      post "name", to: "name#create"
+    if Rails.env.local?
+      namespace :onboarding do
+        get "name", to: "name#new"
+        post "name", to: "name#create"
 
-      get "gems", to: "gems#edit"
-      patch "gems", to: "gems#update"
+        get "gems", to: "gems#edit"
+        patch "gems", to: "gems#update"
 
-      get "users", to: "users#edit"
-      patch "users", to: "users#update"
+        get "users", to: "users#edit"
+        patch "users", to: "users#update"
 
-      get "confirm", to: "confirm#show"
-      patch "confirm", to: "confirm#update"
+        get "confirm", to: "confirm#show"
+        patch "confirm", to: "confirm#update"
+      end
     end
   end
 
