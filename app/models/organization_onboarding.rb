@@ -39,7 +39,7 @@ class OrganizationOnboarding < ApplicationRecord
   end
 
   def avaliable_rubygems
-    created_by.rubygems
+    @avaliable_rubygems ||= created_by.rubygems
   end
 
   def avaliable_users
@@ -47,7 +47,8 @@ class OrganizationOnboarding < ApplicationRecord
       .joins(:ownerships)
       .where(ownerships: { rubygem_id: avaliable_rubygems.pluck(:id) })
       .where.not(ownerships: { user_id: created_by })
-      .distinct(:id)
+      .order(Arel.sql("COUNT (ownerships.id) DESC"))
+      .group(users: [:id])
   end
 
   private

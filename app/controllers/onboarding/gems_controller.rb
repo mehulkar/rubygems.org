@@ -1,9 +1,10 @@
 class Onboarding::GemsController < Onboarding::BaseController
   def edit
-    @avaliable_rubygems = @organization_onboarding.avaliable_rubygems
+    @avaliable_rubygems = @organization_onboarding.avaliable_rubygems.map { |rubygem| [rubygem.name, rubygem.id] }
   end
 
   def update
+    binding.break
     if @organization_onboarding.update(onboarding_gems_params)
       redirect_to onboarding_users_path
     else

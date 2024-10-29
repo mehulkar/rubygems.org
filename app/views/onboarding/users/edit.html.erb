@@ -1,4 +1,10 @@
-<%= form_with(model: @organization_onboarding, url: onboarding_users_path, method: :put) do |form| %>
+<%= form_with(url: onboarding_users_path, method: :put) do |form| %>
   <h1>Edit Users</h1>
+  <% @users.each do |user| %>
+  <div>
+    <%= form.text_field :id, disabled: true %>
+    <%= form.select :role, @roles %>
+  </div>
+  <% end %>
   <%= form.submit %>
 <% end %>
