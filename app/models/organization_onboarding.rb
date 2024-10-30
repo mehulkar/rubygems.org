@@ -121,15 +121,15 @@ class OrganizationOnboarding < ApplicationRecord
   end
 
   def user_gem_ownerships
-    rubygems.each do |id|
-      ownership = Ownership.includes(:rubygem).find_by(rubygem_id: id, user_id: created_by)
+    # rubygems.each do |id|
+    #   ownership = Ownership.includes(:rubygem).find_by(rubygem_id: id, user_id: created_by)
 
-      if ownership.blank?
-        errors.add(:rubygems, "User does not own gem: #{id}")
-        next
-      end
+    #   if ownership.blank?
+    #     errors.add(:rubygems, "User does not own gem: #{id}")
+    #     next
+    #   end
 
-      errors.add(:rubygems, "User does not have owner permissions for gem: #{ownership.rubygem.name}") unless ownership.owner?
-    end
+    #   errors.add(:rubygems, "User does not have owner permissions for gem: #{ownership.rubygem.name}") unless ownership.owner?
+    # end
   end
 end
