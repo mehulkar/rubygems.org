@@ -15,7 +15,8 @@ class Onboarding::UsersControllerTest < ActionController::TestCase
     get :edit
 
     assert_response :ok
-    assert_select "input[type=checkbox][name='organization_onboarding[invitees][][id]']"
+    # assert a text field has has the handle
+    assert_select "input[name='organization_onboarding[invitees][][id]'][value='#{@other_user.id}']"
   end
 
   test "should update user" do
